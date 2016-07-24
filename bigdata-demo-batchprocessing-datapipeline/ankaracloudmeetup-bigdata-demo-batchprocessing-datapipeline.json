@@ -1,0 +1,123 @@
+{
+  "objects": [
+    {
+      "period": "1 days",
+      "name": "Every 1 day",
+      "id": "DefaultSchedule",
+      "type": "Schedule",
+      "startAt": "FIRST_ACTIVATION_DATE_TIME"
+    },
+    {
+      "taskInstanceType": "#{myTaskInstanceType}",
+      "coreInstanceBidPrice": "0.05",
+      "coreInstanceCount": "#{myCoreInstanceCount}",
+      "masterInstanceType": "#{myMasterInstanceType}",
+      "releaseLabel": "#{myEMRReleaseLabel}",
+      "type": "EmrCluster",
+      "bootstrapAction": "#{myBootstrapAction}",
+      "taskInstanceCount": "#{myTaskInstanceCount}",
+      "name": "Ankra Cloud Meetup Big Data Demo - Batch Processing Cluster",
+      "coreInstanceType": "#{myCoreInstanceType}",
+      "keyPair": "#{myEC2KeyPair}",
+      "masterInstanceBidPrice": "0.05",
+      "id": "EmrClusterObj"
+    },
+    {
+      "failureAndRerunMode": "CASCADE",
+      "schedule": {
+        "ref": "DefaultSchedule"
+      },
+      "resourceRole": "DataPipelineDefaultResourceRole",
+      "role": "DataPipelineDefaultRole",
+      "scheduleType": "cron",
+      "name": "Default",
+      "id": "Default"
+    },
+    {
+      "name": "Ankra Cloud Meetup Big Data Demo - Batch Processing EMR",
+      "step": "#{myEmrStep}",
+      "runsOn": {
+        "ref": "EmrClusterObj"
+      },
+      "id": "EmrActivityObj",
+      "type": "EmrActivity"
+    }
+  ],
+  "parameters": [
+    {
+      "helpText": "An existing EC2 key pair to SSH into the master node of the EMR cluster as the user \"hadoop\".",
+      "description": "EC2 key pair",
+      "optional": "true",
+      "id": "myEC2KeyPair",
+      "type": "String"
+    },
+    {
+      "helpLink": "https://docs.aws.amazon.com/console/datapipeline/emrsteps",
+      "watermark": "s3://myBucket/myPath/myStep.jar,firstArg,secondArg",
+      "helpText": "A step is a unit of work you submit to the cluster. You can specify one or more steps",
+      "description": "EMR step(s)",
+      "isArray": "true",
+      "id": "myEmrStep",
+      "type": "String"
+    },
+    {
+      "helpText": "Task instances run Hadoop tasks.",
+      "description": "Task node instance type",
+      "optional": "true",
+      "id": "myTaskInstanceType",
+      "type": "String"
+    },
+    {
+      "default": "m1.medium",
+      "helpText": "Core instances run Hadoop tasks and store data using the Hadoop Distributed File System (HDFS).",
+      "description": "Core node instance type",
+      "id": "myCoreInstanceType",
+      "type": "String"
+    },
+    {
+      "default": "emr-4.3.0",
+      "helpText": "Determines the base configuration of the instances in your cluster, including the Hadoop version.",
+      "description": "EMR Release Label",
+      "id": "myEMRReleaseLabel",
+      "type": "String"
+    },
+    {
+      "default": "2",
+      "description": "Core node instance count",
+      "id": "myCoreInstanceCount",
+      "type": "Integer"
+    },
+    {
+      "description": "Task node instance count",
+      "optional": "true",
+      "id": "myTaskInstanceCount",
+      "type": "Integer"
+    },
+    {
+      "helpLink": "https://docs.aws.amazon.com/console/datapipeline/emr_bootstrap_actions",
+      "helpText": "Bootstrap actions are scripts that are executed during setup before Hadoop starts on every cluster node.",
+      "description": "Bootstrap action(s)",
+      "isArray": "true",
+      "optional": "true",
+      "id": "myBootstrapAction",
+      "type": "String"
+    },
+    {
+      "default": "m1.medium",
+      "helpText": "The Master instance assigns Hadoop tasks to core and task nodes, and monitors their status.",
+      "description": "Master node instance type",
+      "id": "myMasterInstanceType",
+      "type": "String"
+    }
+  ],
+  "values": {
+    "myEMRReleaseLabel": "emr-4.7.2",
+    "myMasterInstanceType": "m3.xlarge",
+    "myEmrStep": [
+      "s3://ankaracloudmeetup-bigdata-demo-${aws.user.accountId}/ankaracloudmeetup-bigdata-demo-batchprocessing-hadoop.jar,s3://ankaracloudmeetup-bigdata-demo-${aws.user.accountId}-tweet-store,s3://ankaracloudmeetup-bigdata-demo-${aws.user.accountId}-tweet-batch-results/hadoop,#{format(minusDays(@scheduledStartTime, 1), 'YYYY/MM/dd')}",
+      "command-runner.jar,hive-script,--run-hive-script,--args,-f,s3://ankaracloudmeetup-bigdata-demo-${aws.user.accountId}/ankaracloudmeetup-bigdata-demo-batchprocessing-hive-query.hql,-d,analyzeDate=#{format(minusDays(@scheduledStartTime, 1), 'YYYY/MM/dd')},-d,aws.user.accountId=${aws.user.accountId}"
+    ],
+    "myCoreInstanceType": "m3.xlarge",
+    "myCoreInstanceCount": "9"
+  }
+}

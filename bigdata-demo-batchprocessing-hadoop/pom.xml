@@ -1,0 +1,166 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  	
+  	<modelVersion>4.0.0</modelVersion>
+  	<artifactId>bigdata-demo-batchprocessing-hadoop</artifactId>
+  	<packaging>jar</packaging>
+    <name>Ankara Cloud Meetup Big Data Demo - Batch Processing Hadoop</name>
+    <url>https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-batchprocessing-hadoop</url>
+	
+	<parent>
+        <groupId>tr.com.cloudmeetup.ankara</groupId>
+        <artifactId>bigdata-demo-root</artifactId>
+        <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    
+  	<properties>
+  	
+  		<aws.user.accountId>*** AWS Account Id Here ***</aws.user.accountId>
+  		     
+        <mainClass>tr.com.cloudmeetup.ankara.bigdata.demo.batchprocessing.hadoop.BatchProcessingHadoopDriver</mainClass>
+        <finalName>ankaracloudmeetup-bigdata-demo-batchprocessing-hadoop</finalName>
+        <finalFileName>${finalName}.jar</finalFileName>
+        
+		<hadoop.version>2.2.0</hadoop.version>
+		<stanford.corenlp.version>3.3.0</stanford.corenlp.version>
+        <json.version>20160212</json.version>
+        <log4j.version>1.2.17</log4j.version>
+
+        <maven.shade.plugin.version>2.1</maven.shade.plugin.version>
+        <maven.beanstalk.plugin.version>1.5.0</maven.beanstalk.plugin.version>
+        
+    </properties>
+  
+  	<build>
+
+        <finalName>ankaracloudmeetup-bigdata-demo-batchprocessing-hadoop</finalName>
+        
+        <plugins> 
+        
+            <!-- Maven Assembly Plugin                  -->
+            <!-- ====================================== -->
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <configuration>
+                    <finalName>ankaracloudmeetup-bigdata-demo-batchprocessing-hadoop-assemblied</finalName>
+                    <appendAssemblyId>false</appendAssemblyId>
+                    <archive>
+                        <manifest>
+                            <mainClass>${mainClass}</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
+            </plugin>
+            <!-- ====================================== -->
+            
+            <!-- Maven Shade Plugin                     -->
+            <!-- ====================================== -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${maven.shade.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>${finalName}</finalName>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>${mainClass}</mainClass>
+                                </transformer>
+                            </transformers>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- ====================================== -->
+            
+            <!-- Maven Beanstalk Plugin                 -->
+            <!-- ====================================== -->
+            <plugin>
+                <groupId>br.com.ingenieux</groupId>
+                <artifactId>beanstalk-maven-plugin</artifactId>
+                <version>${maven.beanstalk.plugin.version}</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <applicationName>${finalName}</applicationName>
+                    <s3Bucket>ankaracloudmeetup-bigdata-demo-${aws.user.accountId}</s3Bucket>
+                    <s3Key>${finalFileName}</s3Key>
+                    <artifactFile>target/${finalFileName}</artifactFile>
+                    <versionLabel>${version}</versionLabel>
+                </configuration>
+            </plugin>
+            <!-- ====================================== -->
+            
+        </plugins>
+        
+    </build>
+    
+   	<dependencies>
+   	
+   		<!-- Apache Hadoop Client                   -->
+        <!-- ====================================== -->
+        <dependency>
+            <groupId>org.apache.hadoop</groupId>
+            <artifactId>hadoop-client</artifactId>
+            <version>${hadoop.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <!-- ====================================== -->
+        
+        <!-- Standford Core NLP                     -->
+        <!-- ====================================== -->
+        <dependency>
+	  		<groupId>edu.stanford.nlp</groupId>
+	  		<artifactId>stanford-corenlp</artifactId>
+	  		<version>${stanford.corenlp.version}</version>
+		</dependency>
+		<!-- Trashed version of original models -->
+		<dependency>
+		    <groupId>edu.stanford.nlp</groupId>
+	  		<artifactId>stanford-corenlp</artifactId>
+	  		<version>${stanford.corenlp.version}</version>
+	  		<classifier>models</classifier>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/../lib/stanford-corenlp-${stanford.corenlp.version}-models.jar</systemPath>
+		</dependency>
+		<!-- ====================================== -->
+		
+		<!-- AWS DynamoDB                           -->
+        <!-- ====================================== -->
+		<dependency>
+		    <groupId>com.amazonaws</groupId>
+		    <artifactId>aws-java-sdk-dynamodb</artifactId>
+		    <version>${aws.sdk.version}</version>
+		</dependency>
+		<!-- ====================================== -->
+
+		<!-- JSON                                   -->
+        <!-- ====================================== -->
+		<dependency>
+    		<groupId>org.json</groupId>
+    		<artifactId>json</artifactId>
+    		<version>${json.version}</version>
+		</dependency>
+		<!-- ====================================== -->
+
+        <!-- Logging                                -->
+        <!-- ====================================== -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <!-- ====================================== -->
+
+	</dependencies>
+    
+</project>

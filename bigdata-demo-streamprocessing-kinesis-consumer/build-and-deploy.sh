@@ -1,0 +1,1 @@
+mvn -Pawseb clean package deploy

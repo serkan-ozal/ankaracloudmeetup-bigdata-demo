@@ -1,0 +1,289 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  	
+  	<modelVersion>4.0.0</modelVersion>
+  	<artifactId>bigdata-demo-streamprocessing-kinesis-consumer</artifactId>
+  	<packaging>jar</packaging>
+    <name>Ankara Cloud Meetup Big Data Demo - Stream Processing Kinesis Consumer</name>
+    <url>https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-streamprocessing-kinesis-consumer</url>
+	
+	<parent>
+        <groupId>tr.com.cloudmeetup.ankara</groupId>
+        <artifactId>bigdata-demo-root</artifactId>
+        <version>1.0</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    
+  	<properties>
+  	
+		<aws.user.accountId>*** AWS Account Id Here ***</aws.user.accountId>
+		
+        <mainClass>tr.com.cloudmeetup.ankara.bigdata.demo.streamprocessing.kinesis.consumer.StreamProcessingKinesisCons</mainClass>
+        
+        <beanstalker.region>us-east-1</beanstalker.region>
+        <environmentName>${project.artifactId}</environmentName>
+        <beanstalk.applicationName>${project.artifactId}</beanstalk.applicationName>
+        <beanstalk.environmentName>${environmentName}</beanstalk.environmentName>
+        <beanstalk.cnamePrefix>${environmentName}</beanstalk.cnamePrefix>
+        <beanstalk.environmentRef>${environmentName}.elasticbeanstalk.com</beanstalk.environmentRef>
+        <beanstalk.versionLabel>${project.version}</beanstalk.versionLabel>
+        <beanstalk.mainJar>${project.build.finalName}.jar</beanstalk.mainJar>
+        <beanstalk.sourceBundle>${project.build.finalName}.zip</beanstalk.sourceBundle>
+        <beanstalk.artifactFile>${project.build.directory}/${beanstalk.sourceBundle}</beanstalk.artifactFile>
+        <beanstalk.s3Bucket>ankaracloudmeetup-bigdata-demo-${aws.user.accountId}</beanstalk.s3Bucket>
+        <beanstalk.s3Key>ankaracloudmeetup-bigdata-demo-streamprocessing-kinesis-consumer.zip</beanstalk.s3Key>
+        <beanstalk.solutionStack>64bit Amazon Linux * running Java 8</beanstalk.solutionStack>
+        <beanstalk.keyName>sozal-aws</beanstalk.keyName>
+        <beanstalk.instanceType>c1.medium</beanstalk.instanceType>
+        
+        <aws.kinesis.client.version>1.6.4</aws.kinesis.client.version>
+        <stanford.corenlp.version>3.3.0</stanford.corenlp.version>
+        <json.version>20160212</json.version>
+        
+        <maven.beanstalk.plugin.version>1.5.0</maven.beanstalk.plugin.version>
+        <maven.exec.plugin.version>1.1</maven.exec.plugin.version>
+        
+    </properties>
+  
+  	<build>
+  	
+        <finalName>ankaracloudmeetup-bigdata-demo-streamprocessing-kinesis-consumer</finalName>
+        
+        <plugins> 
+        
+        	<!-- Maven Assembly Plugin                  -->
+            <!-- ====================================== -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>package-jar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <!-- This must be set as false so as to override the original jar file. -->
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <archive>
+                                <manifest>
+                                    <mainClass>${mainClass}</mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>package-zip</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <descriptors>
+                                <descriptor>src/main/assembly/zip.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- ====================================== -->
+            
+            <!-- Maven Beanstalk Plugin                 -->
+            <!-- ====================================== -->
+            <plugin>
+                <groupId>br.com.ingenieux</groupId>
+                <artifactId>beanstalk-maven-plugin</artifactId>
+                <version>${maven.beanstalk.plugin.version}</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <optionSetting>
+						<namespace>aws:autoscaling:asg</namespace>
+						<optionName>MinSize</optionName>
+						<value>1</value>
+					</optionSetting>
+					<optionSetting>
+						<namespace>aws:autoscaling:asg</namespace>
+						<optionName>MaxSize</optionName>
+						<value>4</value>
+					</optionSetting>
+					<optionSetting>
+	                    <namespace>aws:autoscaling:trigger</namespace>
+	                    <optionName>MeasureName</optionName>
+	                    <value>MemoryUtilization</value>
+	                </optionSetting>
+	                <optionSetting>
+	                    <namespace>aws:autoscaling:trigger</namespace>
+	                    <optionName>Statistic</optionName>
+	                    <value>Maximum</value>
+	                </optionSetting>
+	                <optionSetting>
+	                    <namespace>aws:autoscaling:trigger</namespace>
+	                    <optionName>Unit</optionName>
+	                    <value>Percent</value>
+	                </optionSetting>
+	                <optionSetting>
+	                    <namespace>aws:autoscaling:trigger</namespace>
+	                    <optionName>UpperThreshold</optionName>
+	                    <value>90</value>
+	                </optionSetting>
+	                <optionSetting>
+	                    <namespace>aws:autoscaling:trigger</namespace>
+	                    <optionName>LowerThreshold</optionName>
+	                    <value>25</value>
+	                </optionSetting>
+	                <optionSetting>
+	                    <namespace>aws:autoscaling:trigger</namespace>
+	                    <optionName>MeasureName</optionName>
+	                    <value>CPUUtilization</value>
+	                </optionSetting>
+	                <optionSetting>
+	                    <namespace>aws:autoscaling:trigger</namespace>
+	                    <optionName>Statistic</optionName>
+	                    <value>Maximum</value>
+	                </optionSetting>
+	                <optionSetting>
+	                    <namespace>aws:autoscaling:trigger</namespace>
+	                    <optionName>Unit</optionName>
+	                    <value>Percent</value>
+	                </optionSetting>
+	                <optionSetting>
+	                    <namespace>aws:autoscaling:trigger</namespace>
+	                    <optionName>UpperThreshold</optionName>
+	                    <value>90</value>
+	                </optionSetting>
+	                <optionSetting>
+	                    <namespace>aws:autoscaling:trigger</namespace>
+	                    <optionName>LowerThreshold</optionName>
+	                    <value>25</value>
+	                </optionSetting>
+	                <!--
+	          		<optionSetting>
+						<namespace>aws:elasticbeanstalk:application:environment</namespace>
+						<optionName>propName</optionName>
+						<value>propValue</value>
+					</optionSetting>
+					-->
+                </configuration>
+            </plugin>
+            <!-- ====================================== -->
+            
+            <!-- Maven Execution Plugin                 -->
+            <!-- ====================================== -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${maven.exec.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>${mainClass}</mainClass>
+                </configuration>
+            </plugin>
+            <!-- ====================================== -->
+        
+        </plugins>
+
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+        
+    </build>
+     
+    <profiles>
+        <profile>
+        	<!-- See for more details: https://java.awsblog.com/post/Tx32TLLUI5PY39/Deploying-Java-Applications-on-Elastic-Beanstalk-from-Maven -->
+            <id>awseb</id>
+            <properties>
+                <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+                <beanstalk.versionLabel>${maven.build.timestamp}</beanstalk.versionLabel>
+                <maven.test.skip>true</maven.test.skip>
+                <maven.install.skip>true</maven.install.skip>
+                <maven.deploy.skip>true</maven.deploy.skip>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>br.com.ingenieux</groupId>
+		                <artifactId>beanstalk-maven-plugin</artifactId>
+		                <inherited>true</inherited>
+                        <executions>
+                            <execution>
+                                <id>deploy</id>
+                                <phase>deploy</phase>
+                                <goals>
+                                    <goal>upload-source-bundle</goal>
+                                    <goal>create-application-version</goal>
+                                    <goal>put-environment</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+    
+   	<dependencies>
+   	
+		<!-- AWS                                    -->
+        <!-- ====================================== -->
+		<dependency>
+    		<groupId>com.amazonaws</groupId>
+    		<artifactId>amazon-kinesis-client</artifactId>
+    		<version>${aws.kinesis.client.version}</version>
+		</dependency>
+		<!-- ====================================== -->
+		
+		<!-- Standford Core NLP                     -->
+        <!-- ====================================== -->
+        <dependency>
+	  		<groupId>edu.stanford.nlp</groupId>
+	  		<artifactId>stanford-corenlp</artifactId>
+	  		<version>${stanford.corenlp.version}</version>
+		</dependency>
+		<!-- Trashed version of original models -->
+		<dependency>
+		    <groupId>edu.stanford.nlp</groupId>
+	  		<artifactId>stanford-corenlp</artifactId>
+	  		<version>${stanford.corenlp.version}</version>
+	  		<classifier>models</classifier>
+		    <scope>system</scope>
+		    <systemPath>${project.basedir}/../lib/stanford-corenlp-${stanford.corenlp.version}-models.jar</systemPath>
+		</dependency>
+		<!-- ====================================== -->
+		
+		<!-- JSON                                   -->
+        <!-- ====================================== -->
+		<dependency>
+    		<groupId>org.json</groupId>
+    		<artifactId>json</artifactId>
+    		<version>${json.version}</version>
+		</dependency>
+		<!-- ====================================== -->
+		
+		<!-- Log4J                                  -->
+		<!-- ====================================== -->
+		<dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+        <!-- ====================================== -->
+        
+	</dependencies>
+    
+</project>
