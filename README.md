@@ -39,4 +39,4 @@ module and follow [instructions](github.com/serkan-ozal/ankaracloudmeetup-bigdat
 
 3. Demo Architecture
 ==============
-![bigdata-demo-architecture](github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/images/bigdata-demo-architecture.png) 
+![bigdata-demo-architecture](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/blob/master/images/bigdata-demo-architecture.png) 
