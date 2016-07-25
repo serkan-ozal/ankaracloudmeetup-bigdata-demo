@@ -18,6 +18,8 @@
     </modules>
     
   	<properties>
+
+        <aws.user.accountId>482514484979</aws.user.accountId>
         
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         
