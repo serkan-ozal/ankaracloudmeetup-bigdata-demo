@@ -19,7 +19,7 @@
     
   	<properties>
 
-        <aws.user.accountId>482514484979</aws.user.accountId>
+        <aws.user.accountId>*** YOUR AWS ACCOUNT ID ***</aws.user.accountId>
         
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         
