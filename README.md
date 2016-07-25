@@ -9,34 +9,34 @@ To run demo yourself, please follow steps below.
 
 2. Steps
 ==============
-1. Open `pom.xml`
+1. Open `pom.xml`.
   * Write your AWS account id as value of `<aws.user.accountId>` tag under `properties` tag.
 2. Go to [Storing - Firehose](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-storing-firehose) module 
-   and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-storing-firehose/README.md)
+   and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-storing-firehose/README.md).
 3. Go to [Storing - Crawler](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-storing-crawler) module 
-   and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-storing-crawler/README.md)
+   and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-storing-crawler/README.md).
 4. Go to [Searching - Elasticsearch](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-searching-elasticsearch) module 
-   and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-searching-elasticsearch/README.md)
+   and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-searching-elasticsearch/README.md).
 5. Go to [Searching - Lambda](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-searching-lambda) module 
-   and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-searching-lambda/README.md)
+   and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-searching-lambda/README.md).
 6. Go to [Batch Processing - EMR](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-batchprocessing-emr) module 
-   and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-batchprocessing-emr/README.md)
+   and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-batchprocessing-emr/README.md).
 7. Go to [Batch Processing - DynamoDB](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-batchprocessing-dynamodb) module 
-   and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-batchprocessing-dynamodb/README.md)
+   and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-batchprocessing-dynamodb/README.md).
 8. Go to [Batch Processing - Hadoop](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-batchprocessing-hadoop) module 
-   and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-batchprocessing-hadoop/README.md)
+   and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-batchprocessing-hadoop/README.md).
 9. Go to [Batch Processing - Hive](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-batchprocessing-hive) module 
-   and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-batchprocessing-hive/README.md)
+   and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-batchprocessing-hive/README.md).
 10. Go to [Batch Processing - Data Pipeline](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-batchprocessing-datapipeline) module 
-    and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-batchprocessing-datapipeline/README.md)
+    and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-batchprocessing-datapipeline/README.md).
 11. Go to [Stream Processing - Kinesis](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-streamprocessing-kinesis) module 
-    and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-streamprocessing-kinesis/README.md)
+    and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-streamprocessing-kinesis/README.md).
 12. Go to [Stream Processing - Kinesis Producer](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-streamprocessing-kinesis-producer) module 
-    and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-streamprocessing-kinesis-producer/README.md)
+    and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-streamprocessing-kinesis-producer/README.md).
 13. Go to [Stream Processing - DynamoDB](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-streamprocessing-dynamodb) module 
-    and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-streamprocessing-dynamodb/README.md)
+    and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-streamprocessing-dynamodb/README.md).
 14. Go to [Stream Processing - Kinesis Consumer](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-streamprocessing-kinesis-consumer) module 
-    and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-streamprocessing-kinesis-consumer/README.md)
+    and follow [instructions](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-streamprocessing-kinesis-consumer/README.md).
 15. Congratulations!!! You have completed **Ankara Cloud Meetup - Big Data Demo**
 
 3. Demo Architecture
