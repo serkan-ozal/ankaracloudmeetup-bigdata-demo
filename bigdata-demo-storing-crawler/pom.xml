@@ -17,8 +17,6 @@
 	
   	<properties>
 
-		<aws.user.accountId>*** AWS Account Id Here ***</aws.user.accountId>
-		
         <mainClass>tr.com.cloudmeetup.ankara.bigdata.demo.storing.crawler.TweetCrawler</mainClass>
         
         <beanstalker.region>us-east-1</beanstalker.region>
