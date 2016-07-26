@@ -29,6 +29,10 @@ So if you don't have, create a credentials file  (`~/.aws/credentials`) and put 
   aws_secret_access_key=ABC567...
   ```
 
+6. Open `pom.xml`
+  * You can change other properties about application jar name, uploaded jar path, AWS EC2 instance type, etc ...
+  * By default, your application jar will be uploaded into `ankaracloudmeetup-bigdata-demo-${aws.user.accountId}` bucket 
+    (`${aws.user.accountId}` is your AWS account id) on **AWS S3**.
 7. Run `build-and-deploy.sh` script.
   * Stream processing producer application is built and packaged with all of its dependencies into a single uber jar.
   * Stream processing producer application is deployed into AWS via **AWS Elastic Beanstalk** as single instance.
