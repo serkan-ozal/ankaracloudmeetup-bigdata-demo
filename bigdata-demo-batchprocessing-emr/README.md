@@ -18,9 +18,9 @@ to process stored tweet data as batch.
 6. Select **Master**, **Core** and **Task** node instance types and counts.
    You can also select **Request spot** checkbox to use spot instance for specified instance group.
    In this demo, I used 
-  * `m3.xlarge` typed  **Master** node as **Spot** instance with `0.05$` bid price
-  * `m3.xlarge` typed  **9 Core** nodes as **Spot** instance with `0.05$` bid price
-  * No **Task** nodes
+  * `m3.xlarge` typed  **Master** node as **Spot** instance with `0.05$` bid price.
+  * `m3.xlarge` typed  **9 Core** nodes as **Spot** instance with `0.05$` bid price.
+  * No **Task** nodes.
 7. Click **Next**, then you will be forwarded to **Step 3: General Cluster Settings** screen.
 8. Enter name of the cluster whatever you want for **Cluster name** field 
    (i.e. `Ankara Cloud Meetup Big Data Demo - Batch Processing Cluster`).
