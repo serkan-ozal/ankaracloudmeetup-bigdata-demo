@@ -16,13 +16,11 @@
     </parent>
     
   	<properties>
-  	
-		<aws.user.accountId>*** AWS Account Id Here ***</aws.user.accountId>
-		
+
         <mainClass>tr.com.cloudmeetup.ankara.bigdata.demo.streamprocessing.kinesis.producer.StreamProcessingKinesisProd</mainClass>
         
         <beanstalker.region>us-east-1</beanstalker.region>
-        <environmentName>${project.artifactId}</environmentName>
+        <environmentName>bigdata-demo-streamproc-kinesis-producer</environmentName>
         <beanstalk.applicationName>${project.artifactId}</beanstalk.applicationName>
         <beanstalk.environmentName>${environmentName}</beanstalk.environmentName>
         <beanstalk.cnamePrefix>${environmentName}</beanstalk.cnamePrefix>
