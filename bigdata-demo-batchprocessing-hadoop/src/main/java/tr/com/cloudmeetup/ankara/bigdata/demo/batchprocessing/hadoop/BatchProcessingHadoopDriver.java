@@ -40,7 +40,7 @@ import org.apache.log4j.Logger;
  * Input Path           : s3://ankaracloudmeetup-bigdata-demo-${aws.user.accountId}-tweet-store
  * Output Path          : s3://ankaracloudmeetup-bigdata-demo-${aws.user.accountId}-tweet-batch-results/hadoop
  * Log Folder           : s3://ankaracloudmeetup-bigdata-demo-${aws.user.accountId}-tweet-batch-logs/hadoop
- * All arguments        : s3://ankaracloudmeetup-bigdata-demo-${aws.user.accountId}-tweet-store s3://ankaracloudmeetup-bigdata-demo-${aws.user.accountId}-tweet-batch-results/hadoop
+ * All arguments        : s3://ankaracloudmeetup-bigdata-demo-${aws.user.accountId}-tweet-store s3://ankaracloudmeetup-bigdata-demo-${aws.user.accountId}-tweet-batch-results/hadoop [year/month/day]
  */
 public class BatchProcessingHadoopDriver {
 

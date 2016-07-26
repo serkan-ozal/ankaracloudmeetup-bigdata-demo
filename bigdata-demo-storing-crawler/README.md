@@ -10,7 +10,7 @@ and pushes them into specified **AWS Firehose** stream to be stored into associa
 1. Go to `src/main/resources`.
 2. Open `aws-credentials.properties` file.
   * Enter your AWS access key as property value for `aws.accessKey` property key.
-  * Enter your AWS secret key as property value for `aws.secretKey` property key .
+  * Enter your AWS secret key as property value for `aws.secretKey` property key.
 3. Open `twitter-credentials.properties` file.
   * Enter access token of your Twitter application as property value for `twitter.oauth.accessToken` property key.
   * Enter access token secret of your Twitter application as property value for `twitter.oauth.accessTokenSecret` property key.

@@ -16,9 +16,7 @@
     </parent>
     
   	<properties>
-  	
-  		<aws.user.accountId>*** AWS Account Id Here ***</aws.user.accountId>
-  		     
+
         <mainClass>tr.com.cloudmeetup.ankara.bigdata.demo.batchprocessing.hadoop.BatchProcessingHadoopDriver</mainClass>
         <finalName>ankaracloudmeetup-bigdata-demo-batchprocessing-hadoop</finalName>
         <finalFileName>${finalName}.jar</finalFileName>
@@ -123,15 +121,12 @@
 	  		<artifactId>stanford-corenlp</artifactId>
 	  		<version>${stanford.corenlp.version}</version>
 		</dependency>
-		<!-- Trashed version of original models -->
-		<dependency>
-		    <groupId>edu.stanford.nlp</groupId>
-	  		<artifactId>stanford-corenlp</artifactId>
-	  		<version>${stanford.corenlp.version}</version>
-	  		<classifier>models</classifier>
-		    <scope>system</scope>
-		    <systemPath>${project.basedir}/../lib/stanford-corenlp-${stanford.corenlp.version}-models.jar</systemPath>
-		</dependency>
+        <dependency>
+            <groupId>edu.stanford.nlp</groupId>
+            <artifactId>stanford-corenlp</artifactId>
+            <version>${stanford.corenlp.version}</version>
+            <classifier>models</classifier>
+        </dependency>
 		<!-- ====================================== -->
 		
 		<!-- AWS DynamoDB                           -->
@@ -162,5 +157,19 @@
         <!-- ====================================== -->
 
 	</dependencies>
+
+    <repositories>
+
+        <repository>
+            <id>serkan-ozal-maven-repository</id>
+            <url>https://github.com/serkan-ozal/maven-repository/raw/master/</url>
+        </repository>
+
+        <repository>
+            <id>nexus-maven-repository</id>
+            <url>https://maven-us.nuxeo.org/nexus/content/groups/public/</url>
+        </repository>
+
+    </repositories>
     
 </project>
