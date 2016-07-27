@@ -5,6 +5,8 @@
 This demo was prepared for the **July, 2016 - Ankara Cloud Meetup - Big Data on AWS** talk
 to show big data services and their usages on AWS.
 
+You can access the presentation from [here](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/presentation/Big Data on AWS.pdf).
+
 To run demo yourself, please follow steps below.
 
 2. Steps
