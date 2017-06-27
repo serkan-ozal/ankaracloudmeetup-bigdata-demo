@@ -1,7 +1,7 @@
 # Ankara Cloud Meetup Big Data Demo 
 
 1. What is this demo?
-==============
+-------------
 This demo was prepared for the **July, 2016 - Ankara Cloud Meetup - Big Data on AWS** talk
 to show big data services and their usages on AWS.
 
@@ -10,7 +10,7 @@ You can access the presentation from [here](https://github.com/serkan-ozal/ankar
 To run demo yourself, please follow steps below.
 
 2. Steps
-==============
+-------------
 1. Open `pom.xml`.
   * Write your AWS account id as value of `<aws.user.accountId>` tag under `properties` tag.
 2. Go to [Storing - Firehose](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/tree/master/bigdata-demo-storing-firehose) module 
@@ -42,5 +42,5 @@ To run demo yourself, please follow steps below.
 15. Congratulations!!! You have completed **Ankara Cloud Meetup - Big Data Demo**
 
 3. Demo Architecture
-==============
+-------------
 ![bigdata-demo-architecture](https://github.com/serkan-ozal/ankaracloudmeetup-bigdata-demo/blob/master/images/bigdata-demo-architecture.png)
